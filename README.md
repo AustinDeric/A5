@@ -1,6 +1,6 @@
-#A5
+# A5
 
-##Advanced Automation for Agile Aerospace Applications
+## Advanced Automation for Agile Aerospace Applications
 
 ![A5 Mobile Manipulator](A5-Render.JPG)
 
