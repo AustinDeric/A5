@@ -1,0 +1,153 @@
+<?xml version="1.0" ?>
+
+<robot name="a5" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:include filename="$(find a5_support)/urdf/a5_mobile_platform_macro.xacro"/>
+  <xacro:include filename="$(find a5_support)/urdf/rail_lift_macro.xacro"/>
+  <xacro:include filename="$(find motoman_es200rn_120_support)/urdf/es200rn_120_macro.xacro"/>
+  <xacro:include filename="$(find boeing_sanding_ee_support)/urdf/sanding_ee_macro.xacro"/>
+
+  <xacro:a5_mobile_platform prefix="platform_"/>
+  <xacro:rail_lift prefix="rail_"/>
+  <xacro:motoman_es200rn_120 prefix="robot_"/>
+  <xacro:boeing_sanding_ee prefix="sander_"/>
+
+  <!-- Workcell Level Links -->
+
+  <link name="odom"/>
+
+  <link name="hangar">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://a5_support/meshes/a5/visual/hangar_walls.stl"/>
+      </geometry>
+      <material name="hangar_material">
+        <color rgba="0.9 0.9 0.9 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="hangar_columns">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://a5_support/meshes/a5/visual/hangar_columns.stl"/>
+      </geometry>
+      <material name="hangar_column_material">
+        <color rgba="0.9 0.9 0.0 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <link name="floor">
+    <visual>
+      <origin xyz="-42.5 0 -0.0005" rpy="0 0 0"/>
+      <geometry>
+        <box size="85 63 0.001"/>
+      </geometry>
+      <material name="floor_material">
+        <color rgba="0.753 0.753 0.753 1.0"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-42.5 0 -0.0005" rpy="0 0 0"/>
+      <geometry>
+        <box size="85 63 0.001"/>
+      </geometry>
+      <material name="floor_material"/>
+    </collision>
+  </link>
+
+  <link name="airplane">
+    <visual>
+      <origin xyz="-26 0 0.9398" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://a5_support/meshes/a5/visual/c17.stl"/>
+      </geometry>
+      <material name="airplane_material">
+        <color rgba="0.5 0.5 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="-26 0 0.9398" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://a5_support/meshes/a5/collision/c17.stl"/>
+      </geometry>
+      <material name="airplane_material"/>
+    </collision>
+  </link>
+
+  <link name="scanner_1"/>
+  <link name="scanner_2"/>
+  <link name="detailed_scanner"/>
+
+  <!-- Top-level Assembly Joints -->
+
+  <joint name="hangar_to_world" type="fixed">
+    <origin xyz="0 -10 0" rpy="0 0 ${radians(-90)}"/>
+    <parent link="odom"/>
+    <child link="hangar"/>
+  </joint>
+
+  <joint name="hangar_columns_to_world" type="fixed">
+    <origin xyz="0 -10 0" rpy="0 0 ${radians(-90)}"/>
+    <parent link="odom"/>
+    <child link="hangar_columns"/>
+  </joint>
+
+  <joint name="floor_to_world" type="fixed">
+    <origin xyz="0 -10 0" rpy="0 0 ${radians(-90)}"/>
+    <parent link="odom"/>
+    <child link="floor"/>
+  </joint>
+
+  <joint name="plane_to_world" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="odom"/>
+    <child link="airplane"/>
+  </joint>
+
+  <joint name="platform_to_world" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="odom"/>
+    <child link="platform_base_link"/>
+  </joint>
+
+  <joint name="lift_to_platform" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="platform_tool0"/>
+    <child link="rail_base_link"/>
+  </joint>
+
+  <joint name="robot_to_lift" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="rail_tool0"/>
+    <child link="robot_base_link"/>
+  </joint>
+
+  <joint name="ee_to_robot" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="robot_tool0"/>
+    <child link="sander_base_link"/>
+  </joint>
+
+  <joint name="scanner_1_joint" type="fixed">
+    <origin xyz="3.4 0 -0.15" rpy="0 ${radians(90)} 0"/>
+    <parent link="platform_tool0"/>
+    <child link="scanner_1"/>
+  </joint>
+
+  <joint name="scanner_2_joint" type="fixed">
+    <origin xyz="-2.8 0 3.1" rpy="0 ${radians(90)} 0"/>
+    <parent link="platform_tool0"/>
+    <child link="scanner_2"/>
+  </joint>
+
+  <joint name="detailed_scanner_joint" type="fixed">
+    <origin xyz="-0.100 0 0.100" rpy="0 ${radians(-45)} 0"/>
+    <parent link="robot_tool0"/>
+    <child link="detailed_scanner"/>
+  </joint>
+
+</robot>

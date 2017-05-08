@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+
+<robot name="a5_mobile_platform" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find a5_support)/urdf/a5_mobile_platform_macro.xacro"/>
+  <xacro:a5_mobile_platform prefix=""/>
+</robot>

@@ -1,0 +1,102 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="a5">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="platform_lift_manipulator">
+        <chain base_link="platform_base_link" tip_link="sander_tool0" />
+    </group>
+    <group name="lift_manipulator">
+        <chain base_link="rail_base_link" tip_link="sander_tool0" />
+    </group>
+    <group name="manipulator">
+        <chain base_link="robot_base_link" tip_link="sander_tool0" />
+    </group>
+    <group name="platform">
+        <chain base_link="platform_base_link" tip_link="platform_tool0" />
+    </group>
+    <group name="lift_manipulator_camera">
+        <chain base_link="rail_base_link" tip_link="detailed_scanner" />
+    </group>
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="airplane" link2="floor" reason="Adjacent" />
+    <disable_collisions link1="airplane" link2="hangar" reason="Adjacent" />
+    <disable_collisions link1="airplane" link2="hangar_columns" reason="Never" />
+    <disable_collisions link1="airplane" link2="platform_link_3" reason="Adjacent" />
+    <disable_collisions link1="floor" link2="hangar" reason="Adjacent" />
+    <disable_collisions link1="floor" link2="hangar_columns" reason="Default" />
+    <disable_collisions link1="floor" link2="platform_link_3" reason="Adjacent" />
+    <disable_collisions link1="floor" link2="rail_base_link" reason="Never" />
+    <disable_collisions link1="floor" link2="rail_link_1" reason="Never" />
+    <disable_collisions link1="floor" link2="rail_link_2" reason="Never" />
+    <disable_collisions link1="floor" link2="rail_touch_screen" reason="Never" />
+    <disable_collisions link1="floor" link2="robot_balancer_piston" reason="Never" />
+    <disable_collisions link1="floor" link2="robot_balancer_rod" reason="Never" />
+    <disable_collisions link1="floor" link2="robot_base_link" reason="Never" />
+    <disable_collisions link1="floor" link2="robot_link_l" reason="Never" />
+    <disable_collisions link1="floor" link2="robot_link_s" reason="Never" />
+    <disable_collisions link1="hangar" link2="hangar_columns" reason="Adjacent" />
+    <disable_collisions link1="hangar" link2="platform_link_3" reason="Adjacent" />
+    <disable_collisions link1="platform_link_3" link2="rail_base_link" reason="Adjacent" />
+    <disable_collisions link1="platform_link_3" link2="rail_link_1" reason="Never" />
+    <disable_collisions link1="platform_link_3" link2="rail_link_2" reason="Never" />
+    <disable_collisions link1="platform_link_3" link2="rail_touch_screen" reason="Never" />
+    <disable_collisions link1="platform_link_3" link2="robot_balancer_piston" reason="Never" />
+    <disable_collisions link1="platform_link_3" link2="robot_balancer_rod" reason="Never" />
+    <disable_collisions link1="platform_link_3" link2="robot_base_link" reason="Never" />
+    <disable_collisions link1="platform_link_3" link2="robot_link_s" reason="Never" />
+    <disable_collisions link1="rail_base_link" link2="rail_link_1" reason="Adjacent" />
+    <disable_collisions link1="rail_base_link" link2="rail_link_2" reason="Never" />
+    <disable_collisions link1="rail_base_link" link2="rail_touch_screen" reason="Adjacent" />
+    <disable_collisions link1="rail_base_link" link2="robot_balancer_piston" reason="Never" />
+    <disable_collisions link1="rail_base_link" link2="robot_balancer_rod" reason="Never" />
+    <disable_collisions link1="rail_base_link" link2="robot_base_link" reason="Never" />
+    <disable_collisions link1="rail_base_link" link2="robot_link_s" reason="Never" />
+    <disable_collisions link1="rail_link_1" link2="rail_link_2" reason="Adjacent" />
+    <disable_collisions link1="rail_link_1" link2="rail_touch_screen" reason="Never" />
+    <disable_collisions link1="rail_link_1" link2="robot_balancer_piston" reason="Never" />
+    <disable_collisions link1="rail_link_1" link2="robot_balancer_rod" reason="Never" />
+    <disable_collisions link1="rail_link_1" link2="robot_base_link" reason="Never" />
+    <disable_collisions link1="rail_link_1" link2="robot_link_s" reason="Never" />
+    <disable_collisions link1="rail_link_2" link2="rail_touch_screen" reason="Never" />
+    <disable_collisions link1="rail_link_2" link2="robot_balancer_piston" reason="Never" />
+    <disable_collisions link1="rail_link_2" link2="robot_balancer_rod" reason="Never" />
+    <disable_collisions link1="rail_link_2" link2="robot_base_link" reason="Adjacent" />
+    <disable_collisions link1="rail_link_2" link2="robot_link_s" reason="Never" />
+    <disable_collisions link1="rail_touch_screen" link2="robot_balancer_piston" reason="Never" />
+    <disable_collisions link1="rail_touch_screen" link2="robot_balancer_rod" reason="Never" />
+    <disable_collisions link1="rail_touch_screen" link2="robot_base_link" reason="Never" />
+    <disable_collisions link1="rail_touch_screen" link2="robot_link_l" reason="Never" />
+    <disable_collisions link1="rail_touch_screen" link2="robot_link_s" reason="Never" />
+    <disable_collisions link1="robot_balancer_piston" link2="robot_balancer_rod" reason="Default" />
+    <disable_collisions link1="robot_balancer_piston" link2="robot_base_link" reason="Never" />
+    <disable_collisions link1="robot_balancer_piston" link2="robot_link_s" reason="Adjacent" />
+    <disable_collisions link1="robot_balancer_rod" link2="robot_base_link" reason="Never" />
+    <disable_collisions link1="robot_balancer_rod" link2="robot_link_l" reason="Default" />
+    <disable_collisions link1="robot_balancer_rod" link2="robot_link_r" reason="Never" />
+    <disable_collisions link1="robot_balancer_rod" link2="robot_link_s" reason="Adjacent" />
+    <disable_collisions link1="robot_base_link" link2="robot_link_l" reason="Never" />
+    <disable_collisions link1="robot_base_link" link2="robot_link_s" reason="Adjacent" />
+    <disable_collisions link1="robot_link_b" link2="robot_link_l" reason="Never" />
+    <disable_collisions link1="robot_link_b" link2="robot_link_r" reason="Adjacent" />
+    <disable_collisions link1="robot_link_b" link2="robot_link_t" reason="Adjacent" />
+    <disable_collisions link1="robot_link_b" link2="robot_link_u" reason="Never" />
+    <disable_collisions link1="robot_link_b" link2="sander_base_link" reason="Never" />
+    <disable_collisions link1="robot_link_l" link2="robot_link_r" reason="Never" />
+    <disable_collisions link1="robot_link_l" link2="robot_link_s" reason="Adjacent" />
+    <disable_collisions link1="robot_link_l" link2="robot_link_t" reason="Never" />
+    <disable_collisions link1="robot_link_l" link2="robot_link_u" reason="Adjacent" />
+    <disable_collisions link1="robot_link_l" link2="sander_base_link" reason="Never" />
+    <disable_collisions link1="robot_link_r" link2="robot_link_t" reason="Never" />
+    <disable_collisions link1="robot_link_r" link2="robot_link_u" reason="Adjacent" />
+    <disable_collisions link1="robot_link_r" link2="sander_base_link" reason="Never" />
+    <disable_collisions link1="robot_link_t" link2="robot_link_u" reason="Never" />
+    <disable_collisions link1="robot_link_t" link2="sander_base_link" reason="Adjacent" />
+    <disable_collisions link1="robot_link_u" link2="sander_base_link" reason="Never" />
+</robot>

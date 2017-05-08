@@ -1,0 +1,9 @@
+<launch>
+  <group ns="load_sanding_ee__">
+    <include file="$(find boeing_sanding_ee_support)/launch/load_sanding_ee.launch"/>
+  </group>
+
+  <group ns="test_sanding_ee__">
+    <include file="$(find boeing_sanding_ee_support)/launch/test_sanding_ee.launch"/>
+  </group>
+</launch>

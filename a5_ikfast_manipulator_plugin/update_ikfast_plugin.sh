@@ -1,0 +1,1 @@
+rosrun moveit_kinematics create_ikfast_moveit_plugin.py a5 manipulator a5_ikfast_manipulator_plugin /home/mripperger/ros/a5_ws/src/10-22519/a5_ikfast_manipulator_plugin/src/a5_manipulator_ikfast_solver.cpp

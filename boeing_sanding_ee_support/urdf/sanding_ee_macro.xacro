@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="boeing_sanding_ee" params="prefix">
+    <!-- link list -->
+    <link name="${prefix}base_link">
+      <!--visual>
+        <origin xyz="0 0 0" rpy="0 0 ${radians(180)}"/>
+        <geometry>
+          <mesh filename="package://boeing_sanding_ee_support/meshes/sanding_ee/visual/end_effector_visual.stl"/>
+        </geometry>
+        <material name="visual_material">
+          <color rgba="0.753 0.753 0.753 1"/>
+        </material>
+      </visual-->
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 3.14159"/>
+        <geometry>
+          <mesh filename="package://boeing_sanding_ee_support/meshes/sanding_ee/collision/robot_mount_collision.stl"/>
+        </geometry>
+        <material name="collision_material">
+          <color rgba="0.753 0.753 0.753 1"/>
+        </material>
+      </collision>
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${radians(180)}"/>
+        <geometry>
+          <mesh filename="package://boeing_sanding_ee_support/meshes/sanding_ee/collision/sanding_head_collision.stl"/>
+        </geometry>
+        <material name="collision_material"/>
+      </collision>
+    </link>
+    <link name="${prefix}link_1"/>
+    <link name="${prefix}tool0"/>
+    <!-- end of link list -->
+
+    <!-- joint list -->
+    <joint name="${prefix}joint_1" type="fixed">
+      <origin xyz="0 0 0.443" rpy="0 1.047 0"/>
+      <parent link="${prefix}base_link"/>
+      <child link="${prefix}link_1"/>
+    </joint>
+    <joint name="${prefix}joint_2" type="fixed">
+      <origin xyz="0 0 0.1967" rpy="0 0 0"/>
+      <parent link="${prefix}link_1"/>
+      <child link="${prefix}tool0"/>
+    </joint>
+    <!-- end of joint list -->
+
+  </xacro:macro>
+</robot>

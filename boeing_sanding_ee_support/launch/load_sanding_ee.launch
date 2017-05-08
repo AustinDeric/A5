@@ -1,0 +1,3 @@
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find boeing_sanding_ee_support)/urdf/sanding_ee.xacro'" />
+</launch>

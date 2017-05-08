@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: a5_support
+    relative_path: urdf/a5.xacro
+  SRDF:
+    relative_path: config/a5.srdf
+  CONFIG:
+    author_name: Michael Ripperger
+    author_email: michael.ripperger@swri.org
+    generated_timestamp: 1490393753

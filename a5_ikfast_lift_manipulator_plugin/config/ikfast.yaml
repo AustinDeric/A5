@@ -1,0 +1,4 @@
+# Indicates the reference frames for the Descartes to Moveit-IK-Fast adapter. They default to base_link
+# and tool0, which we don't have so I need to specify it
+ikfast_base_frame: rail_base_link
+ikfast_tool_frame: robot_tool0

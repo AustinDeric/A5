@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+
+<robot name="boeing_sanding_ee" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find boeing_sanding_ee_support)/urdf/sanding_ee_macro.xacro"/>
+  <xacro:boeing_sanding_ee prefix=""/>
+</robot>

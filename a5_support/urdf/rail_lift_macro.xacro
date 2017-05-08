@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+<xacro:property name="z" value="${-0.475 - 0.1}"/>
+<xacro:property name="x" value="${3.0}"/>
+<xacro:property name="t" value="${radians(30)}"/>
+<!--<xacro:property name="t" value="${atan((3.5 + 0.475 - 0.1) / 6.0)}"/>-->
+<xacro:property name="rail_length" value="${sqrt((6.0**2)+((3.5 + 0.475 - 0.1)**2))}"/>
+<xacro:property name="rail_length_div2" value="${sqrt((6.0**2)+((3.5 + 0.475 - 0.1)**2)) / 2}"/>
+<xacro:property name="rail_travel" value="${3.0 * sqrt(3.5**2 + 6.0**2) / 3.5}"/>
+<xacro:property name="carriage_offset" value="0.420"/>
+
+<xacro:macro name="rail_lift" params="prefix">
+    <!-- link list -->
+    <link name="${prefix}base_link">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a5_support/meshes/a5/visual/rail_support_structure.stl"/>
+            </geometry>
+            <material name="${prefix}structure_material">
+                <color rgba="0.5 0.5 0.5 1.0"/>
+            </material>
+        </visual>
+    <!--      <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a5_support/meshes/a5/collision/rail_support_structure.stl"/>
+            </geometry>
+            <material name="${prefix}structure_material"/>
+        </collision>-->
+    </link>
+    <link name="${prefix}link_1">
+      <visual>
+          <origin xyz="0 0 0" rpy ="0 0 0"/>
+          <geometry>
+              <mesh filename="package://a5_support/meshes/a5/visual/rail_base.stl"/>
+          </geometry>
+          <material name="${prefix}rail_material">
+              <color rgba="0.75 0.75 0.75 1"/>
+          </material>
+      </visual>
+      <collision>
+          <origin xyz="0 0 0" rpy ="0 0 0"/>
+          <geometry>
+              <mesh filename="package://a5_support/meshes/a5/collision/rail_base.stl"/>
+          </geometry>
+          <material name="${prefix}rail_material"/>
+      </collision>
+    </link>
+    <link name="${prefix}link_2">
+        <visual>
+            <origin xyz="0 0 0" rpy ="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a5_support/meshes/a5/visual/rail_carriage.stl"/>
+            </geometry>
+            <material name="${prefix}carriage_material">
+                <color rgba="0.8 0.1 0 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy ="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a5_support/meshes/a5/collision/rail_carriage.stl"/>
+            </geometry>
+            <material name="${prefix}carriage_material"/>
+        </collision>
+    </link>
+    <link name="${prefix}tool0"/>
+    <link name="${prefix}touch_screen">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.030 0.61 0.34"/>
+            </geometry>
+            <material name="${prefix}screen_material">
+                <color rgba="0.1 0.1 0.1 1.0"/>
+            </material>
+        </visual>
+    </link>
+    <!-- end of link list -->
+
+    <!-- joint list -->
+    <joint name="${prefix}joint_1" type="fixed">
+        <origin xyz="${x} 0 ${z}" rpy="0 ${t} 0"/>
+        <parent link="${prefix}base_link"/>
+        <child link="${prefix}link_1"/>
+    </joint>
+    <joint name="${prefix}actuation_joint" type="prismatic">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}link_1"/>
+        <child link="${prefix}link_2"/>
+        <axis xyz="-1 0 0"/>
+        <limit lower="0" upper="${rail_travel}" effort="0" velocity="0.5"/>
+    </joint>
+    <joint name="${prefix}joint_3-tool0" type="fixed">
+        <origin xyz="-0.5 0 0.75" rpy="0 -${t} 0"/>
+        <parent link="${prefix}link_2"/>
+        <child link="${prefix}tool0"/> 
+    </joint>
+    <joint name="${prefix}joint_touch_screen" type="fixed">
+        <origin xyz="-1.85 -0.40 0.875" rpy="0 0 0"/>
+        <parent link="${prefix}base_link"/>
+        <child link="${prefix}touch_screen"/>
+    </joint>
+    <!-- end of joint list -->
+
+</xacro:macro>
+</robot>

@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+
+<robot name="rail_lift" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find a5_support)/urdf/rail_lift_macro.xacro"/>
+  <xacro:rail_lift prefix=""/>
+</robot>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="a5_mobile_platform" xmlns:xacro="http://ros.org/wiki/xacro">
+<xacro:macro name="a5_mobile_platform" params="prefix">
+    <!-- link list -->
+    <link name="${prefix}base_link"/>
+    <link name="${prefix}link_1"/>
+    <link name="${prefix}link_2"/>
+    <link name="${prefix}link_3">
+        <visual>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a5_support/meshes/a5/visual/mobile_platform.stl"/>
+            </geometry>
+            <material name="${prefix}visual_material">
+                <color rgba="0.96 0.871 0.702 1"/>
+            </material>
+        </visual>
+        <collision>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <geometry>
+                <mesh filename="package://a5_support/meshes/a5/collision/mobile_platform.stl"/>
+            </geometry>
+            <material name="${prefix}collision_material">
+                <color rgba="0 1 0 1"/>
+            </material>
+        </collision>
+    </link>
+    <link name="${prefix}tool0"/>
+    <!-- end of link list -->
+
+    <!-- joint list -->
+    <joint name="${prefix}joint_1" type="prismatic">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}base_link"/>
+        <child link="${prefix}link_1"/>
+        <axis xyz="1 0 0"/>
+        <limit lower="-50" upper="50" effort="0" velocity="0.5"/>
+    </joint>
+    <joint name="${prefix}joint_2" type="prismatic">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}link_1"/>
+        <child link="${prefix}link_2"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-50" upper="50" effort="0" velocity="0.5"/>
+    </joint>
+    <joint name="${prefix}joint_3" type="revolute">
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <parent link="${prefix}link_2"/>
+        <child link="${prefix}link_3"/>
+        <axis xyz="0 0 1"/>
+        <limit lower="-6.283" upper="6.283" effort="0" velocity="0.15"/>
+    </joint>
+    <joint name="${prefix}joint_3-tool0" type="fixed">
+        <origin xyz="0 0 0.8" rpy="0 0 0"/>
+        <parent link="${prefix}link_3"/>
+        <child link="${prefix}tool0"/>
+    </joint>
+    <!-- end of joint list -->
+
+</xacro:macro>
+</robot>
