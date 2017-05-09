@@ -6,11 +6,11 @@
   </group>
 
   <group ns="test_es200rn_120__">
-    <include file="$(find motoman_es200rn_120_support)/launch/test_irb2400.launch"/>
+    <include file="$(find motoman_es200rn_120_support)/launch/test_es200rn_120.launch"/>
   </group>
 
   <group ns="robot_interface_download_es200rn_120__">
-    <include file="$(find motoman_es200rn_120_support)/launch/robot_interface_download_es200rn_120.launch">
+    <include file="$(find motoman_es200rn_120_support)/launch/robot_interface_streaming_es200rn_120.launch">
       <arg name="robot_ip" value="$(arg ip_str)" />
     </include>
   </group>
