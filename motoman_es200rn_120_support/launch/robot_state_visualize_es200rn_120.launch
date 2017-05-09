@@ -9,13 +9,12 @@
 -->
 <launch>
   <arg name="robot_ip" />
-  <arg name="J23_coupled" default="true" />
+  <arg name="controller" />
 
   <rosparam command="load" file="$(find motoman_es200rn_120_support)/config/joint_names_es200rn_120.yaml" />
 
-  <include file="$(find motoman_driver)/launch/robot_interface.launch">
+  <include file="$(find motoman_driver)/launch/robot_interface_streaming_$(arg controller).launch">
     <arg name="robot_ip"    value="$(arg robot_ip)" />
-    <arg name="J23_coupled" value="$(arg J23_coupled)" />
   </include>
 
   <node name="robot_state_publisher" pkg="robot_state_publisher" 

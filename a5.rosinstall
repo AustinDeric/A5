@@ -1,0 +1,14 @@
+- git: {local-name: 10-22519, uri: 'https://raesgit.datasys.swri.edu/raes-client/10-22519.git', version: master}
+
+- git: {local-name: pcl_conversions, uri: 'https://github.com/Jmeyer1292/pcl_conversions.git', version: kinetic_pcl1.8}
+- git: {local-name: perception_pcl, uri: 'https://github.com/Jmeyer1292/perception_pcl.git', version: kinetic_pcl1.8}
+
+- git: {local-name: 10.R8706, uri: 'https://raesgit.datasys.swri.edu/raes-client/10.R8706.git', version: master}
+- git: {local-name: descartes, uri: 'https://github.com/Jmeyer1292/descartes.git', version: godel_refactor_omp}
+
+- git: {local-name: simulated_lidar_scanner, uri: 'https://raesgit.datasys.swri.edu/mripperger/Simulated-Lidar-Scanner.git', version: master}
+
+# Custom version of stage that does not depend on SIM time
+- git: {local-name: stage_ros, uri: 'https://github.com/Jmeyer1292/stage_ros.git', version: no_sim_time}
+
+- git: {local-name: motoman, uri: 'https://github.com/ros-industrial/motoman.git', version: kinetic-devel}
