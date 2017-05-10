@@ -16,6 +16,7 @@ env:
     - UPSTREAM_WORKSPACE=file
     - ROSINSTALL_FILENAME=a5.rosinstall
     - BEFORE_SCRIPT='catkin config -w $CATKIN_WORKSPACE --no-install'
+    - ROS_PARALLEL_JOBS='-j1'
   matrix:
     - ROS_REPOSITORY_PATH=http://packages.ros.org/ros/ubuntu
     - ROS_REPOSITORY_PATH=http://packages.ros.org/ros-shadow-fixed/ubuntu
